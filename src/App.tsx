@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import {Outlet, useLocation, redirect} from "react-router-dom";
+import { Home } from './pages/Home/Home';
 
 function App() {
+  const loc = useLocation();
+  const isAuthCheck = () => {
+    if(!localStorage.getItem("isAuth") && loc.pathname !== "/login") {
+      return redirect('/login');
+    }
+  }
+  useEffect(() => {
+    isAuthCheck()
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Outlet/>
     </div>
   );
 }
