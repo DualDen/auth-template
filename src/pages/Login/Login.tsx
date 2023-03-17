@@ -1,15 +1,18 @@
 import React, {useState,useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { login } from "../../store/reducers/AC";
-import { setAuth } from "../../store/reducers/AuthSlice";
 import "../../App.css"
 import { Button, Form } from "antd";
 import Input from "antd/es/input/Input";
-
+import {redirect} from "react-router-dom"
 export const Login = () => {
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
-    const {user, isAuthLoading} = useAppSelector(state => state.authSlice);
+    const {user, isAuthLoading,isAuth} = useAppSelector(state => state.authSlice);
+    useEffect(() => {
+        isAuth &&  redirect("/")
+        console.log(isAuth)
+    },[isAuth])
     const dispatch = useAppDispatch()
     const handleUsername = (e:any) => {
         setUsername(e.target.value)

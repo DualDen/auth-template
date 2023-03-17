@@ -15,4 +15,3 @@ root.render(
     <RouterProvider router={router}/>
     </Provider>
 );
-console.log(setupStore());
