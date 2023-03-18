@@ -38,5 +38,9 @@
 }
 .container{
   max-width: 300px;
-  margin: 500px auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }
